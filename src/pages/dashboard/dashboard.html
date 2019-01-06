@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start [hidden]="!isPickupRequested">
+      <button ion-button (click)="cancelPickup()">
+         Stop
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <span [hidden]="isPickupRequested">Ducont India Pvt Ltd</span>
+      <span [hidden]="!isPickupRequested">Sakthi is On the way...</span>
+    </ion-title>
+    <ion-buttons end [hidden]="isPickupRequested">
+      <button ion-button icon-only (click)="map.centerLocation()">
+          <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-fab top left edge>
+        <button ion-fab mini color="dark"><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list>
+          <button ion-fab><ion-icon name="bus"></ion-icon></button>
+          <button ion-fab><ion-icon name="call"></ion-icon></button>
+          <button ion-fab><ion-icon name="car"></ion-icon></button>
+          <button ion-fab (click)="map.centerLocation()"><ion-icon name="locate"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
+
+  <div class="map-wrapper">
+    <map #map
+      [isPickupRequested]="isPickupRequested"
+      [destination]="destination">
+   </map>
+   <destination-address
+      [hidden]="!isRiderPickedUp"
+      (newDest)="setDestination($event)">
+   </destination-address>
+  </div>
+
+  <div class="bottom request-controls" padding>
+
+
+        <button ion-button color="dark" [hidden]="isPickupRequested" block primary (click)="confirmPickup()">Play</button>
+        <button ion-button color="dark" [hidden]="!isPickupRequested" block secondary (click)="cancelPickup()">Stop</button>
+
+    <ion-row>
+      <ion-col>
+        PICKUP TIME IS APPROXIMATELY {{timeTillArrival}} MIN
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+

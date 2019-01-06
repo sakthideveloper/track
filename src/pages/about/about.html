@@ -1,0 +1,24 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-buttons start>
+          <button ion-button icon-only (click)="autoRefresh(map)">
+              <ion-icon name="play"></ion-icon>
+          </button>
+        </ion-buttons>
+
+    <ion-title>Track</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="stop();">
+          <ion-icon name="pause"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+	<div id="map"></div>
+</ion-content>
